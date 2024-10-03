@@ -1,6 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import "./App.css";
 import { Card } from "./components/Card";
+import { useDispatch, useSelector } from "react-redux";
+import { disableCards, increaseScore, increaseTurns, markMatchedCards, resetTurns, setCards, setFirstCard, setSecondCard } from "./store";
 
 const cardList = [
   {
@@ -30,39 +32,40 @@ const cardList = [
 ];
 
 function App() {
-  const [cards, setCards] = useState([]);
-  const [turns, setTurns] = useState(0);
-  const [firstCard, setFirstCard] = useState(null);
-  const [secondCard, setSecondCard] = useState(null);
-  const [disabled, setDisabled] = useState(false);
-  const [score, setScore] = useState(0);
+  const dispatch = useDispatch();
+  const cards = useSelector((state) => state.cardList);
+  const firstCard = useSelector((state) => state.firstCard);
+  const secondCard = useSelector((state) => state.secondCard);
+  const score = useSelector((state) => state.score);
+  const disabled = useSelector((state) => state.disabledCards);
+  const turns = useSelector((state) => state.turns);
 
   const randomizeCards = () => {
     const randomizedCards = [...cardList, ...cardList].sort(() => Math.random() - 0.5).map((c, i) => ({ ...c, id: i, isMatched: false }));
-    setCards(randomizedCards);
-    setFirstCard(null);
-    setSecondCard(null);
-    setTurns(0);
+    dispatch(setCards(randomizedCards));
+    dispatch(setFirstCard(null));
+    dispatch(setSecondCard(null));
+    dispatch(resetTurns());
   };
 
   const handleCardClick = (card) => {
-    firstCard ? setSecondCard(card) : setFirstCard(card);
+    firstCard ? dispatch(setSecondCard(card)) : dispatch(setFirstCard(card));
   };
 
   const handleTurn = () => {
-    setFirstCard(null);
-    setSecondCard(null);
-    setTurns((prev) => prev + 1);
-    setDisabled(false);
+    dispatch(setFirstCard(null));
+    dispatch(setSecondCard(null));
+    dispatch(increaseTurns());
+    dispatch(disableCards(false));
   };
 
   useEffect(() => {
     if (score === 8) return alert("You won!");
     if (firstCard && secondCard) {
-      setDisabled(true);
+      dispatch(disableCards(true));
       if (firstCard.src === secondCard.src) {
-        setCards((prev) => prev.map((card) => (card.src === firstCard.src ? { ...card, isMatched: true } : card)));
-        setScore((prev) => prev + 1);
+        dispatch(markMatchedCards(firstCard.src));
+        dispatch(increaseScore());
         handleTurn();
       } else {
         setTimeout(handleTurn, 1000);
