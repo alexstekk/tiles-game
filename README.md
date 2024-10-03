@@ -1,3 +1,5 @@
+live: https://alexstekk.github.io/tiles-game/
+
 Test task for front-end developer vacancy
 
 Description: 
