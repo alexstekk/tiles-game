@@ -7,28 +7,28 @@ import { Line } from "rc-progress";
 
 const cardList = [
   {
-    src: "/img/01.svg",
+    src: "./img/01.svg",
   },
   {
-    src: "/img/02.svg",
+    src: "./img/02.svg",
   },
   {
-    src: "/img/03.svg",
+    src: "./img/03.svg",
   },
   {
-    src: "/img/04.svg",
+    src: "./img/04.svg",
   },
   {
-    src: "/img/05.svg",
+    src: "./img/05.svg",
   },
   {
-    src: "/img/06.svg",
+    src: "./img/06.svg",
   },
   {
-    src: "/img/07.svg",
+    src: "./img/07.svg",
   },
   {
-    src: "/img/08.svg",
+    src: "./img/08.svg",
   },
 ];
 
@@ -82,6 +82,7 @@ function App() {
   return (
     <div className="app">
       <h1>Tile game</h1>
+      <p className="autor">coded by <a href="https://t.me/AlexStekk">alexstekk</a></p>
       <button onClick={randomizeCards}>New game</button>
 
       <div className="cards-container">
