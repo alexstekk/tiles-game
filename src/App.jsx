@@ -35,6 +35,7 @@ function App() {
   const [firstCard, setFirstCard] = useState(null);
   const [secondCard, setSecondCard] = useState(null);
   const [disabled, setDisabled] = useState(false);
+  const [score, setScore] = useState(0);
 
   const randomizeCards = () => {
     const randomizedCards = [...cardList, ...cardList].sort(() => Math.random() - 0.5).map((c, i) => ({ ...c, id: i, isMatched: false }));
@@ -56,10 +57,12 @@ function App() {
   };
 
   useEffect(() => {
+    if (score === 8) return alert("You won!");
     if (firstCard && secondCard) {
       setDisabled(true);
       if (firstCard.src === secondCard.src) {
         setCards((prev) => prev.map((card) => (card.src === firstCard.src ? { ...card, isMatched: true } : card)));
+        setScore((prev) => prev + 1);
         handleTurn();
       } else {
         setTimeout(handleTurn, 1000);
