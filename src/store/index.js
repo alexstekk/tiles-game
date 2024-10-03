@@ -25,22 +25,29 @@ const gameSlice = createSlice({
     setSecondCard: (state, action) => {
       state.secondCard = action.payload;
     },
-    resetTurns: (state, action) => {
+    resetCards: (state) => {
+      state.firstCard = null;
+      state.secondCard = null;
+    },
+    resetTurns: (state) => {
       state.turns = 0;
     },
-    increaseTurns: (state, action) => {
+    increaseTurns: (state) => {
       state.turns = state.turns + 1;
     },
     disableCards: (state, action) => {
       state.disabledCards = action.payload;
     },
-    increaseScore: (state, action) => {
+    increaseScore: (state) => {
       state.score = state.score + 1;
+    },
+    resetGame: () => {
+      return initialState;
     },
   },
 });
 
-export const { setCards, setFirstCard, setSecondCard, setTurns, disableCards, increaseTurns, resetTurn, increaseScore, resetTurns,markMatchedCards } = gameSlice.actions;
+export const { setCards, setFirstCard, setSecondCard, setTurns, disableCards, increaseTurns, resetTurn, increaseScore, resetTurns, markMatchedCards, resetCards, resetGame } = gameSlice.actions;
 
 export const store = configureStore({
   reducer: gameSlice.reducer,
