@@ -1,11 +1,15 @@
-live: https://alexstekk.github.io/tiles-game/
+# Memory card game
 
-Test task for front-end developer vacancy
-
-Description: 
+## Description 
 The page consists of a board of tiles (default 4x4). 
-- every 2 tiles have the same color (it could be an image, it doesn't matter); 
-- each tile is closed, so the user can not see a color (image). 
-The gameplay is the sequence of rounds. In each round the user should select 2 tiles with the same color to make them disappear. If he selects 2 tiles with different colors then they are flipped to "closed" state, and the user proceeds with the next round. The game is considered to be over when all of the tiles are opened. 
-General notes: 
-You are welcome to use any tools you like, the only requirement is that the target application works in modern browsers (IE >= 10). Mobile browsers are not required. Use git and push repository to your github account for review. 
+- every 2 tiles have the same image 
+- each tile is closed, so the user can not see a image. 
+The gameplay is the sequence of rounds. In each round the user should select 2 tiles with the same image to make them flipped. The game is considered to be over when all of the tiles are opened.
+
+## Live
+https://alexstekk.github.io/tiles-game/
+## Stack
+<p>
+<img src="https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black&style=for-the-badge" height="40" alt="react logo"  />  <img width="12" /><img src="https://img.shields.io/badge/Redux-764ABC?logo=redux&logoColor=white&style=for-the-badge" height="40" alt="redux logo"  />
+</p>
+
